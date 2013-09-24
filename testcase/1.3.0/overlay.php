@@ -16,8 +16,13 @@
 </style>
 <div class="J_TScriptedModule" data-componentid="uniqueSign">
 <!--popup-->
+<<<<<<< HEAD
 	<a href="#" class="od-img-download">popup</a>
 	<div class="od-overlay" style="visibility: hidden; left: 56px; top: 9px;">
+=======
+	<a href="#" class="ks-img-download">popup</a>
+	<div class="ks-overlay" style="visibility: hidden; left: 56px; top: 9px;" ><div class="ks-contentbox">
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
     <table>
         <tbody><tr>
             <td id="topleft" class="corner"></td>

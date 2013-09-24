@@ -23,8 +23,13 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
             this.inner = new Overlay.Popup(config);
         }
 		
+<<<<<<< HEAD
 		SafePopup.prototype.move = function (x,y) {
             this.inner.move(x,y);
+=======
+		SafePopup.prototype.move = function () {
+            this.inner.move();
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
         };
 		SafePopup.prototype.center = function () {
             this.inner.center();
@@ -42,11 +47,20 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
             this.inner.destroy();
         };
 		
+<<<<<<< HEAD
 		/*
 		自定义事件
 		*/
 		
 
+=======
+		SafePopup.prototype.on = function(type, fnc){
+            this.inner.on(type, frameGroup.markFunction(function(){
+                fnc.call();
+            }));
+        };
+	
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
         //---- 封装的构造函数编写完成后，就需要让"第三方环境认识" 需要调用markCtor标记一下，让容器认识
         frameGroup.markCtor(SafePopup);//frameGroup.markCor 标记构造函数
 
@@ -57,12 +71,21 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
         frameGroup.grantMethod(SafePopup, "hide");
 		frameGroup.grantMethod(SafePopup, "render");
 		frameGroup.grantMethod(SafePopup, "destroy");
+<<<<<<< HEAD
+=======
+		frameGroup.grantMethod(SafePopup, "on");
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
 		
 		function SafeDialog(config) {
             this.inner = new Overlay.Dialog(config);
         }
+<<<<<<< HEAD
 		SafeDialog.prototype.move = function (x,y) {
             this.inner.move(x,y);
+=======
+		SafeDialog.prototype.move = function () {
+            this.inner.move();
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
         };
 		SafeDialog.prototype.center = function () {
             this.inner.center();
@@ -81,7 +104,16 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
             this.inner.destroy();
         };
 		
+<<<<<<< HEAD
 
+=======
+		SafeDialog.prototype.on = function(type, fnc){
+            this.inner.on(type, frameGroup.markFunction(function(){
+                fnc.call();
+            }));
+        };
+		
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
 		 //---- 封装的构造函数编写完成后，就需要让"第三方环境认识" 需要调用markCtor标记一下，让容器认识
         frameGroup.markCtor(SafeDialog);//frameGroup.markCor 标记构造函数
 
@@ -92,6 +124,12 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
         frameGroup.grantMethod(SafeDialog, "hide");
 		frameGroup.grantMethod(SafeDialog, "render");
 		frameGroup.grantMethod(SafeDialog, "destroy");
+<<<<<<< HEAD
+=======
+		frameGroup.grantMethod(SafeDialog, "on");
+	
+
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
 		
         /**
          * @param context 上下文
@@ -112,16 +150,25 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
                         var args = S.makeArray(arguments);			
                         var config = cajaAFTB.untame(args[0]);	
 							config={
+<<<<<<< HEAD
 								srcNode: DOM.get(config.srcNode,context.mod) ? DOM.get(config.srcNode,context.mod) : null,
 								trigger: DOM.get(config.trigger,context.mod) ? DOM.get(config.trigger,context.mod) : null,
+=======
+								srcNode: DOM.get(config.srcNode,context.mod),
+								trigger: DOM.get(config.trigger,context.mod),
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
 								triggerType:config.triggerType,
 								align:config.align!=null ? {
 									node: DOM.get(config.align.node,context.mod),
 									points:config.align.points,
 									offset:config.align.offset
 								} : null,
+<<<<<<< HEAD
 								prefixCls: config.prefixCls==null ? 'od-': config.prefixCls,
 								elBefore:placebefore
+=======
+								prefixCls: config.prefixCls==null ? 'ks-': config.prefixCls
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
 								};
                         return new SafePopup(config);
                     }),
@@ -132,8 +179,13 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
                         var args = S.makeArray(arguments);			
                         var config = cajaAFTB.untame(args[0]);			
 						config={
+<<<<<<< HEAD
 								srcNode: DOM.get(config.srcNode,context.mod) ? DOM.get(config.srcNode,context.mod) : null,
 								trigger: DOM.get(config.trigger,context.mod) ? DOM.get(config.trigger,context.mod) : null,
+=======
+								srcNode: DOM.get(config.srcNode,context.mod),
+								trigger: DOM.get(config.trigger,context.mod),
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
 								triggerType:config.triggerType,
 								align:config.align!=null ? {	
 									points:config.align.points
@@ -141,8 +193,12 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
 								width:config.width,
 								height:config.height,
 								headerContent:cajaAFTB.sanitizeHtml(config.headerContent),
+<<<<<<< HEAD
 								bodyContent:cajaAFTB.sanitizeHtml(config.bodyContent),
 								elBefore:placebefore
+=======
+								bodyContent:cajaAFTB.sanitizeHtml(config.bodyContent)
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
 								};
                         return new SafeDialog(config);
                     })

@@ -1,7 +1,12 @@
 //Popup
 var olay = KISSY.Overlay.Popup({
+<<<<<<< HEAD
         srcNode:'.od-overlay',
         trigger : '.od-img-download',//配置Popup的触发器
+=======
+        srcNode:'.ks-overlay',
+        trigger : '.ks-img-download',//配置Popup的触发器
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
         triggerType : 'mouse',    //触发类型
         align : {
             node : '.od-img-download',
@@ -28,6 +33,9 @@ var dlay = KISSY.Overlay.Dialog({
 		
     }
 );
+<<<<<<< HEAD
 dlay.move(200,300);
+=======
+>>>>>>> bf75aa1f8ac1fcbe705be7bd944748dee5a8df1c
 dlay.show();
 
