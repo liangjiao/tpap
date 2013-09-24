@@ -6,31 +6,18 @@
     用户的javascript理论上只可以作用到这个dom下面，不可以"越界"
 -->
 <style>
-    .ks-overlay {
+    .od-overlay {
         position:absolute;
         left:-9999px;
         top:-9999px;
     }
-    .ks-overlay-hidden {
-        visibility: hidden;
-    }
 
-    .ks-overlay-mask-hidden {
-        display: none;
-    }
-
-    .ks-overlay-shown {
-        visibility: visible;
-    }
-
-    .ks-overlay-mask-shown{
-        display: block;
     }
 </style>
 <div class="J_TScriptedModule" data-componentid="uniqueSign">
 <!--popup-->
-	<a href="#" class="ks-img-download">popup</a>
-	<div  class="popup ks-popup ks-overlay ks-ext-position ks-popup-hidden ks-overlay-hidden ks-dpop" style="visibility: hidden; left: 56px; top: 9px;" ><div class="ks-contentbox">
+	<a href="#" class="od-img-download">popup</a>
+	<div class="od-overlay" style="visibility: hidden; left: 56px; top: 9px;">
     <table>
         <tbody><tr>
             <td id="topleft" class="corner"></td>
@@ -67,13 +54,13 @@
         </tr>
 
     </tbody></table>
-</div></div>
+</div>
+
+
 <!--popup-->
 
 
-<!--dialog-->
-<div class="ks-button ks-button-shown">dialog</div>
-<!--dialog-->
+
 
 </div>
 

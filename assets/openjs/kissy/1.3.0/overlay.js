@@ -23,7 +23,12 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
             this.inner = new Overlay.Popup(config);
         }
 		
-		
+		SafePopup.prototype.move = function (x,y) {
+            this.inner.move(x,y);
+        };
+		SafePopup.prototype.center = function () {
+            this.inner.center();
+        };
         SafePopup.prototype.show = function () {
             this.inner.show();
         };
@@ -37,76 +42,56 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
             this.inner.destroy();
         };
 		
-	
+		/*
+		自定义事件
+		*/
+		
+
         //---- 封装的构造函数编写完成后，就需要让"第三方环境认识" 需要调用markCtor标记一下，让容器认识
         frameGroup.markCtor(SafePopup);//frameGroup.markCor 标记构造函数
 
-        //构造函数实例的方法，需要grantMethod ，加入白名单，没有授权的方法，不可以使用，容器不认识
+        //构造函数实例的方法，需要grantMethod ，加入白名单，没有授权的方法，不可以使用，容器不认识	
+		frameGroup.grantMethod(SafePopup, "move");
+		frameGroup.grantMethod(SafePopup, "center");
 		frameGroup.grantMethod(SafePopup, "show");
         frameGroup.grantMethod(SafePopup, "hide");
 		frameGroup.grantMethod(SafePopup, "render");
 		frameGroup.grantMethod(SafePopup, "destroy");
-
 		
 		function SafeDialog(config) {
             this.inner = new Overlay.Dialog(config);
         }
+		SafeDialog.prototype.move = function (x,y) {
+            this.inner.move(x,y);
+        };
+		SafeDialog.prototype.center = function () {
+            this.inner.center();
+        };
+		
 		 SafeDialog.prototype.show = function () {
             this.inner.show();
         };
         SafeDialog.prototype.hide = function () {
             this.inner.hide();
         };
-        SafeDialog.prototype.render = function () {
+        SafeDialog.prototype.render = function () {		
             this.inner.render();
         };
         SafeDialog.prototype.destroy = function () {
             this.inner.destroy();
         };
 		
+
 		 //---- 封装的构造函数编写完成后，就需要让"第三方环境认识" 需要调用markCtor标记一下，让容器认识
         frameGroup.markCtor(SafeDialog);//frameGroup.markCor 标记构造函数
 
         //构造函数实例的方法，需要grantMethod ，加入白名单，没有授权的方法，不可以使用，容器不认识
+		frameGroup.grantMethod(SafeDialog, "move");
+		frameGroup.grantMethod(SafeDialog, "center");
 		frameGroup.grantMethod(SafeDialog, "show");
         frameGroup.grantMethod(SafeDialog, "hide");
 		frameGroup.grantMethod(SafeDialog, "render");
 		frameGroup.grantMethod(SafeDialog, "destroy");
-		
-	
-
-		function SafeOverlay(config) {
-            this.inner = new Overlay(config);
-        }
-		
-		
-        SafeOverlay.prototype.show = function () {
-            this.inner.show();
-        };
-        SafeOverlay.prototype.hide = function () {
-            this.inner.hide();
-        };
-        SafeOverlay.prototype.render = function () {
-            this.inner.render();
-        };
-        SafeOverlay.prototype.destroy = function () {
-            this.inner.destroy();
-        };
-		
-		
-	
-		
-		
-	
-        //---- 封装的构造函数编写完成后，就需要让"第三方环境认识" 需要调用markCtor标记一下，让容器认识
-        frameGroup.markCtor(SafeOverlay);//frameGroup.markCor 标记构造函数
-
-        //构造函数实例的方法，需要grantMethod ，加入白名单，没有授权的方法，不可以使用，容器不认识
-		frameGroup.grantMethod(SafeOverlay, "show");
-        frameGroup.grantMethod(SafeOverlay, "hide");
-		frameGroup.grantMethod(SafeOverlay, "render");
-		frameGroup.grantMethod(SafeOverlay, "destroy");
-
 		
         /**
          * @param context 上下文
@@ -121,26 +106,46 @@ KISSY.add(function (S, Overlay, Dialog, Popup) {
 			return {
                 Overlay: {
                     Popup: frameGroup.markFunction(function () {
+						var dombody = KISSY.all(context.mod);
+						var placebefore=dombody[0].appendChild(document.createElement('div'));
+						KISSY.all(placebefore).hide();
                         var args = S.makeArray(arguments);			
-                        var cfg = cajaAFTB.untame(args[0]);			
-						//cfg.renderTo = S.DOM.get(cfg.renderTo, context.mod);
-                        return new SafePopup(cfg);
+                        var config = cajaAFTB.untame(args[0]);	
+							config={
+								srcNode: DOM.get(config.srcNode,context.mod) ? DOM.get(config.srcNode,context.mod) : null,
+								trigger: DOM.get(config.trigger,context.mod) ? DOM.get(config.trigger,context.mod) : null,
+								triggerType:config.triggerType,
+								align:config.align!=null ? {
+									node: DOM.get(config.align.node,context.mod),
+									points:config.align.points,
+									offset:config.align.offset
+								} : null,
+								prefixCls: config.prefixCls==null ? 'od-': config.prefixCls,
+								elBefore:placebefore
+								};
+                        return new SafePopup(config);
                     }),
 					Dialog: frameGroup.markFunction(function () {
+						var dombody = KISSY.all(context.mod);
+						var placebefore=dombody[0].appendChild(document.createElement('div'));
+						KISSY.all(placebefore).hide();
                         var args = S.makeArray(arguments);			
-                        var cfg = cajaAFTB.untame(args[0]);			
-						//cfg.renderTo = S.DOM.get(cfg.renderTo, context.mod);
-                        return new SafeDialog(cfg);
-                    }),
-					Overlay: frameGroup.markFunction(function () {
-                        var args = S.makeArray(arguments);			
-                        var cfg = cajaAFTB.untame(args[0]);			
-						//cfg.renderTo = S.DOM.get(cfg.renderTo, context.mod);
-                        return new SafeOverlay(cfg);
+                        var config = cajaAFTB.untame(args[0]);			
+						config={
+								srcNode: DOM.get(config.srcNode,context.mod) ? DOM.get(config.srcNode,context.mod) : null,
+								trigger: DOM.get(config.trigger,context.mod) ? DOM.get(config.trigger,context.mod) : null,
+								triggerType:config.triggerType,
+								align:config.align!=null ? {	
+									points:config.align.points
+								} : null,
+								width:config.width,
+								height:config.height,
+								headerContent:cajaAFTB.sanitizeHtml(config.headerContent),
+								bodyContent:cajaAFTB.sanitizeHtml(config.bodyContent),
+								elBefore:placebefore
+								};
+                        return new SafeDialog(config);
                     })
-
-
-                   
                 },
                 kissy:true
             }
