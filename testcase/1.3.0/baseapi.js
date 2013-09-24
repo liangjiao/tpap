@@ -1,10 +1,10 @@
+var div = document.createElement("div");
 
-var t1 = KISSY.DOM.get('.t1');
-
-t1.style.color= "red";
-t1.style.WebkitTransform = 'rotate(34deg)';
-console.log(t1.style.filter);
-
+div.style.boxShadow = "none";
+KISSY.DOM.css('.t1','color','red');
+KISSY.DOM.css('.t1','color','#CCC');
+KISSY.DOM.css('.t1','filter','A');
+KISSY.DOM.css('.t1','fuck','A');
 
 describe('对象基本方法和字符串测试', function () {
 

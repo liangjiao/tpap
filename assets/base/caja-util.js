@@ -123,6 +123,26 @@
         }
     };
 
+    //init in balcony.js
+    cajaAFTB.tameNode = null;
+
+    /**
+     * sanitizeHtml
+     * @param need santized html
+     * @parem frame env
+     * @return safety html
+     */
+    cajaAFTB.sanitizeHtml = null;
+
+    /**
+     * checkCss
+     * @param HTMLElement/Selector
+     * @parem stylePropertyName
+     * @param styleProperty value
+     * @return true/errormessage
+     */
+    cajaAFTB.checkCss = null;
+
     window.cajaAFTB = cajaAFTB;
 
 })(caja, KISSY);
