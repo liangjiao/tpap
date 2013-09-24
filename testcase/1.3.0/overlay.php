@@ -11,26 +11,13 @@
         left:-9999px;
         top:-9999px;
     }
-    .ks-overlay-hidden {
-        visibility: hidden;
-    }
 
-    .ks-overlay-mask-hidden {
-        display: none;
-    }
-
-    .ks-overlay-shown {
-        visibility: visible;
-    }
-
-    .ks-overlay-mask-shown{
-        display: block;
     }
 </style>
 <div class="J_TScriptedModule" data-componentid="uniqueSign">
 <!--popup-->
 	<a href="#" class="ks-img-download">popup</a>
-	<div  class="popup ks-popup ks-overlay ks-ext-position ks-popup-hidden ks-overlay-hidden ks-dpop" style="visibility: hidden; left: 56px; top: 9px;" ><div class="ks-contentbox">
+	<div class="ks-overlay" style="visibility: hidden; left: 56px; top: 9px;" ><div class="ks-contentbox">
     <table>
         <tbody><tr>
             <td id="topleft" class="corner"></td>
